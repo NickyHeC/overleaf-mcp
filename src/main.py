@@ -1,20 +1,15 @@
+# Copyright (c) 2026 Nicky
+# SPDX-License-Identifier: MIT
+
+"""Entrypoint."""
+
 import asyncio
 
-from dedalus_mcp import MCPServer
+from dotenv import load_dotenv
 
-from .tools import tools
+load_dotenv()
 
-
-# --- Server ---
-
-server = MCPServer(name="overleaf-mcp")
-
-
-async def main() -> None:
-    for tool_func in tools:
-        server.collect(tool_func)
-    await server.serve(port=8080)
-
+from server import main
 
 if __name__ == "__main__":
     asyncio.run(main())
